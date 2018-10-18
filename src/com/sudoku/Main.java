@@ -1,8 +1,9 @@
-package com.sudoku;
+package com.sudoku; //If you just copied my code, change the package to your pathway of the file (good english)
 
 import java.util.Random;
 
 public class Main {
+
     public static void main(String[] args) {
         Random random = new Random();
 
@@ -10,7 +11,10 @@ public class Main {
         int identifiedQuad = 0;
         //enter makes the program go down a step after 4 numbers. Otherwise it would not be rendered as a sudoku, but just a single line
         int enter = 0;
+        int ASCIIcounter = 0;
         int[][] board5 = new int[4][4];
+
+
 
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 4; x++) {
@@ -57,6 +61,9 @@ public class Main {
                     quad4[2] = board5[3][2];
                     quad4[3] = board5[3][3];
 
+                    //ta väck random nummer
+                    //public static void
+
                     //This takes the quad that genNumber is in and checks if it has the number that genNumber produced
                     if(identifiedQuad == 1) {
                         clearQuad = checkQuad(quad1, genNumber);
@@ -74,16 +81,36 @@ public class Main {
 
                     //This is true if both the x axis, y axis, and quad is clear from the generated number
                     if (clearRow && clearColumn && clearQuad) {
+
                         board5[x][y] = genNumber;
                         if (enter < 3) {
 
+                            if (enter == 2) {
+
+                                System.out.print("|");
+
+                            }
+                            if (ASCIIcounter == 2) {
+
+
+                                System.out.print("-----");
+                                ASCIIcounter = 0;
+                                System.out.println();
+
+                            }
+
                             System.out.print(board5[x][y]);
                             enter++;
+
                         } else {
+
                             System.out.println(board5[x][y]);
                             enter = 0;
+                            ASCIIcounter = ASCIIcounter + 1;
+
                         }
                     } else {
+
                         x--;
                         failCounter = failCounter + 1;
                         if (failCounter > 250) {
@@ -93,7 +120,9 @@ public class Main {
                             enter = 0;
                             failCounter = 0;
                             System.out.println();
+                            System.out.println("FAILED TO GENERATE SUDOKU. RETRYING:");
                             System.out.println();
+
                         }
                     }
                 }
@@ -102,12 +131,14 @@ public class Main {
         }
         private static boolean checkQuad(int[] quadx, int genNumber) {
 
-            if(quadx[0] == genNumber || quadx[1] == genNumber || quadx[2] == genNumber || quadx[3] == genNumber) {
-                return false;
-            } else {
-                return true;
-            }
+            return quadx[0] != genNumber && quadx[1] != genNumber && quadx[2] != genNumber && quadx[3] != genNumber;
 
         }
 
     }
+
+
+    //Uppgift nu:
+    //Skapa ASCII
+    //ta väck random nummer
+    //Fixa "mini" ASCII mellan varenda cell för att skapa ett rutnät???
