@@ -61,9 +61,6 @@ public class Main {
                     quad4[2] = board5[3][2];
                     quad4[3] = board5[3][3];
 
-                    //ta väck random nummer
-                    //public static void
-
                     //This takes the quad that genNumber is in and checks if it has the number that genNumber produced
                     if(identifiedQuad == 1) {
                         clearQuad = checkQuad(quad1, genNumber);
@@ -71,7 +68,7 @@ public class Main {
                         clearQuad = checkQuad(quad2, genNumber);
                     } else if(identifiedQuad == 3) {
                         clearQuad = checkQuad(quad3, genNumber);
-                    } else if(identifiedQuad == 4) {
+                    } else {
                         clearQuad = checkQuad(quad4, genNumber);
                     }
 
@@ -136,9 +133,3 @@ public class Main {
         }
 
     }
-
-
-    //Uppgift nu:
-    //Skapa ASCII
-    //ta väck random nummer
-    //Fixa "mini" ASCII mellan varenda cell för att skapa ett rutnät???
