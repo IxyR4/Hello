@@ -1,6 +1,5 @@
 package com.sudoku;
 
-import javax.sound.midi.SysexMessage;
 import java.util.Random;
 
 public class Main {
@@ -8,46 +7,21 @@ public class Main {
         Random random = new Random();
 
         int failCounter = 0;
+        int identifiedQuad = 0;
+        //enter makes the program go down a step after 4 numbers. Otherwise it would not be rendered as a sudoku, but just a single line
         int enter = 0;
         int[][] board5 = new int[4][4];
-
-        /*int [] board =  new int[4];
-        int [] board2 = new int[4];
-        int [] board3 = new int[4];
-        int [] board4 = new int[4];
-        */
-        //int test = random.nextInt(4) + 1;
-        // int [x][y] board5
-
-        //int validNumber = 0;
-
-        //Setup
-
-
-//        while (c < 4) {
-//            board5[x%4][y] = random.nextInt(4) + 1;
-//            int modolunumber = 4;
-//
-//            //Kom iåg modulus och sådana saker. Kolla dina papper
-//
-//            modolunumber = modolunumber % 4;
 
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 4; x++) {
                     boolean clearRow;
                     boolean clearColumn;
                     boolean clearQuad = false;
+
+                    //Generated number
                     int genNumber = random.nextInt(4) + 1;
-                    int identifiedQuad = 0;
 
-                    //Du ska få genNumber ska identidiera vilken quad den ligger i. Det värdet ska läggas i identifiedQuad.
-                    //Ideer om hur du ska göra. Den som tjuvtittar på min kod. Plez look here and halp me plez
-
-                    // if x && y = what
-                    //Det är inte genNumber. Det ska vara board med IdentifiedQuad ett if eller switch statement
-                    //Ta x och y och kolla passar dessa med quad1, 2, 3, 4.
-
-                    //This is the example code for identifiedQuad. It defines what quad the genNumber is in.
+                    //This looks up what quad genNumber currently is in
                     if (x < 2 && y < 2) {
                     identifiedQuad = 1;
                     } else if (x > 1 && y < 2) {
@@ -58,9 +32,7 @@ public class Main {
                     identifiedQuad = 4;
                     }
 
-
-
-                    //quads coming ovah here boye
+                    //This is where the 4 quads are defined
                     int[] quad1 = new int [4];
                     quad1[0] = board5[0][0];
                     quad1[1] = board5[0][1];
@@ -85,6 +57,7 @@ public class Main {
                     quad4[2] = board5[3][2];
                     quad4[3] = board5[3][3];
 
+                    //This takes the quad that genNumber is in and checks if it has the number that genNumber produced
                     if(identifiedQuad == 1) {
                         clearQuad = checkQuad(quad1, genNumber);
                     } else if(identifiedQuad == 2) {
@@ -95,9 +68,11 @@ public class Main {
                         clearQuad = checkQuad(quad4, genNumber);
                     }
 
-                    clearRow = (genNumber != board5[(x+1)%4][y] && genNumber != board5[(x+2)%4][y] && genNumber != board5[(x+3)%4][y]);//Kolla om next number inte e samma sak som (koordinater)
+                    //This is the rules that check if the X and Y axis is clear from the generated number
+                    clearRow = (genNumber != board5[(x+1)%4][y] && genNumber != board5[(x+2)%4][y] && genNumber != board5[(x+3)%4][y]);
                     clearColumn = (genNumber != board5[x][(y+1)%4] && genNumber != board5[x][(y+2)%4] && genNumber != board5[x][(y+3)%4]);
 
+                    //This is true if both the x axis, y axis, and quad is clear from the generated number
                     if (clearRow && clearColumn && clearQuad) {
                         board5[x][y] = genNumber;
                         if (enter < 3) {
@@ -121,38 +96,18 @@ public class Main {
                             System.out.println();
                         }
                     }
-                     /*System.out.print(clearRow);
-                    System.out.print(genNumber);
-                    System.out.print(" ");
-                    */
-
-                    //X checker and later Y checker
-                    //How do you check what's a valid number???
-
                 }
             }
-//                else {
-//                    System.out.print(board5[x][y]);  //This makes the first cell filled with something
-//
-//                x = x + 1;
-//                c = c + 1;
-//
-//            }
-        }
-        public static boolean checkQuad (int[] quadx, int genNumber) {
 
-        if (quadx[0] == genNumber || quadx[1] == genNumber || quadx[2] == genNumber || quadx[3] == genNumber) {
-            return false;
-        } else {
-            return true;
         }
+        private static boolean checkQuad(int[] quadx, int genNumber) {
+
+            if(quadx[0] == genNumber || quadx[1] == genNumber || quadx[2] == genNumber || quadx[3] == genNumber) {
+                return false;
+            } else {
+                return true;
+            }
 
         }
 
     }
-
-
-    //Du ska få genNumber ska identidiera vilken quad den ligger i. Det värdet ska läggas i identifiedQuad.
-//Efteråt har du ASCII kvar good luck m9!
-//Lycka till du har inte Nicholas. gg wp get rekt nub.
-
