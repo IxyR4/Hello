@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class Main {
 
+
+
     public static void main(String[] args) {
         Random random = new Random();
 
@@ -14,6 +16,8 @@ public class Main {
         int ASCIIcounter = 0;
         int[][] board5 = new int[4][4];
 
+
+        //Print board with some pieces that are gone here
 
 
             for(int y = 0; y < 4; y++) {
@@ -79,6 +83,7 @@ public class Main {
                     //This is true if both the x axis, y axis, and quad is clear from the generated number
                     if (clearRow && clearColumn && clearQuad) {
 
+                        //gör en funktion som printar hela boardet men tar väck vissa delar. Byt ut System.out.print till funktionen
                         board5[x][y] = genNumber;
                         if (enter < 3) {
 
@@ -126,6 +131,20 @@ public class Main {
             }
 
         }
+
+    public static void printBoard() {
+            /* reseta X och Y för att sedan göra en counter så att du kan printa alla koordinater
+            Gör ett typ delete-amount. Genom detta kan användaren ta bort ett specifierat amount med rutor som förändrar svårighetgraden.
+            Gör sedan typ (switch eller något. Du ska byta ut det till 0) sedan ett random nummer för x och ett random för y. Det ska utföras så många gånger som delete-amount är satt till
+            Utför sedan print. Och det bör vara klart.
+
+            Exempel kod:
+
+
+
+            */
+    }
+
         private static boolean checkQuad(int[] quadx, int genNumber) {
 
             return quadx[0] != genNumber && quadx[1] != genNumber && quadx[2] != genNumber && quadx[3] != genNumber;
