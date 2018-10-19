@@ -1,4 +1,4 @@
-package com.sudoku; //If you just copied my code, change the package to your pathway of the file (good english)
+package com.sudoku; //If you just copied my code, change the package to your pathway of the file. If you're on a web compiler, or something like that, remove this line.
 
 import java.util.Random;
 
@@ -13,16 +13,19 @@ public class Main {
         int enter = 0;
         int ASCIIcounter = 0;
         int delEffect;
-        int delNumber = 9; //The user enters the number here
 
+        //LOOK OVER HERE
 
+        int delNumber = 9; //Enter the number here. The higher the number, the harder the puzzle. Remember: MAX 14. 16 Will print out only zeros.
 
-        //Generate board
+        //LOOK OVER HERE
+
+        //This generates the board
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 boolean clearRow;
                 boolean clearColumn;
-                boolean clearQuad = false;
+                boolean clearQuad;
 
                 //Generated number
                 int genNumber = random.nextInt(4) + 1;
@@ -32,9 +35,9 @@ public class Main {
                     identifiedQuad = 1;
                 } else if (x > 1 && y < 2) {
                     identifiedQuad = 2;
-                } else if (x < 2 && y > 1) {
+                } else if (x < 2) {
                     identifiedQuad = 3;
-                } else if (x > 1 && y > 1) {
+                } else {
                     identifiedQuad = 4;
                 }
 
@@ -63,7 +66,6 @@ public class Main {
                 quad4[2] = board5[3][2];
                 quad4[3] = board5[3][3];
 
-
                 //This takes the quad that genNumber is in and checks if it has the number that genNumber produced
                 if (identifiedQuad == 1) {
                     clearQuad = checkQuad(quad1, genNumber);
@@ -79,31 +81,9 @@ public class Main {
                 clearRow = (genNumber != board5[(x + 1) % 4][y] && genNumber != board5[(x + 2) % 4][y] && genNumber != board5[(x + 3) % 4][y]);
                 clearColumn = (genNumber != board5[x][(y + 1) % 4] && genNumber != board5[x][(y + 2) % 4] && genNumber != board5[x][(y + 3) % 4]);
 
-
                 //This is true if both the x axis, y axis, and quad is clear from the generated number
                 if (clearRow && clearColumn && clearQuad) {
-
                     board5[x][y] = genNumber;
-
-
-
-//                    if (enter < 3) {
-//
-//                        if (enter == 2) {
-//                            //  System.out.print("|");
-//                        }
-//                        if (ASCIIcounter == 2) {
-//                            //  System.out.print("-----");
-//                            ASCIIcounter = 0;
-//                            // System.out.println();
-//                        }
-//
-//                        enter++;
-//                    } else {
-//                        //System.out.println(board5[x][y]);
-//                        enter = 0;
-//                        ASCIIcounter = ASCIIcounter + 1;
-//                    }
                 } else {
                     x--;
                     failCounter = failCounter + 1;
@@ -112,36 +92,23 @@ public class Main {
                         y = 0;
                         x = -1;
                         failCounter = 0;
-                        System.out.println();
-                        System.out.println("FAILED TO GENERATE SUDOKU. RETRYING:");
-                        System.out.println();
-
                     }
                 }
-                //Här kan du köra test kod Sebastian. Tack Sebastian.
             }
         }
 
-
-        //Remove stuff
-
-
-        //The switch i guess
+        //This is the function where it coverts random coordinates to 0
         for (delEffect = 0; delEffect < delNumber; delEffect++) {
 
             int randomX = random.nextInt(4);
             int randomY = random.nextInt(4);
 
-            board5[randomX][randomY] = 0;
-
-
+            if (board5[randomX][randomY] == 0) {
+                 delEffect--;
+            } else {
+                board5[randomX][randomY] = 0;
+            }
         }
-
-//
-//        //Print shit
-//
-//
-//        //enter makes the program go down a step after 4 numbers. Otherwise it would not be rendered as a sudoku, but just a single line
 
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
@@ -164,75 +131,21 @@ public class Main {
                 }
             }
         }
-
+        System.out.println();
+        System.out.print("BOARD PRINTED. GOOD LUCK SOLVING IT!");
     }
 
-        public static boolean checkQuad(int[] quadx, int genNumber) {
+    private static boolean checkQuad(int[] quadx, int genNumber) {
 
-            return quadx[0] != genNumber && quadx[1] != genNumber && quadx[2] != genNumber && quadx[3] != genNumber;
+        return quadx[0] != genNumber && quadx[1] != genNumber && quadx[2] != genNumber && quadx[3] != genNumber;
 
-        }
-
-
-
-
-
-
-
-
-            /*reseta X och Y för att sedan göra en counter så att du kan printa alla koordinater
-            Gör ett typ delete-amount. Genom detta kan användaren ta bort ett specifierat amount med rutor som förändrar svårighetgraden.
-            Gör sedan typ (switch eller något. Du ska byta ut det till 0) sedan ett random nummer för x och ett random för y. Det ska utföras så många gånger som delete-amount är satt till
-            Utför sedan print. Och det bör vara klart.
-*/
-            //Exempel kod:
-
-
-            //Print the fuckin board
-//            for (int printCounter = 0; printCounter < 16; printCounter++) {
-//
-//                enter = 0;
-//                ASCIIcounter = 0;
-//
-//                if (enter < 3) {
-//
-//                    if (enter == 2) {
-//                        System.out.print("|");
-//                    }
-//                    if (ASCIIcounter == 2) {
-//                        System.out.print("-----");
-//                        ASCIIcounter = 0;
-//                        System.out.println();
-//                    }
-//                    //vanlig print
-//                    System.out.print(board5[x][y]);
-//                    enter++;
-//
-//                } else {
-//
-//                }            //Printar ut en linje ner här
-//                System.out.println(board5[x][y]);
-//                enter = 0;
-//                ASCIIcounter = ASCIIcounter + 1;
-//            }
-
-
-
-
-
-
-//        int delNumber = 9;
-//        x = 0 && y = 0;
-//        int delEffect = 0;
-//
-//        //The switch i guess
-//        for (int delEffect; delEffect < delNumber; delEffect++) {
-//
-//            int randomX = random.nextInt(4);
-//            int randomY = random.nextInt(4);
-//
-//            board5[randomX][randomY] = 0;
-//        }
-//    }
-
+    }
 }
+
+/*
+As this is my first project in Java ever, the code might be wrongly formatted.
+I've learnt all this in just one week. I've never coded in Java before.
+Code made by Sebastian (IxyR4).
+Special thanks to Kevin and Nicholas for the amazing help creating this.
+Huge thanks to HiQ for giving me this task, i'm looking forward for more.
+*/
