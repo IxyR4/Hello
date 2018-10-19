@@ -6,4 +6,4 @@ Simply it goes through several algorithms to create a fully solved sudoku, then 
 You can change the difficulty of the "game" by changing the value/int named "delNumber" in Main.java. It's easy to see and is currently on row 19.
 If you enter "7" in delNumber as an example, it will remove 7 numbers and change them to zeros. That gives you 7 numbers to solve out.
 
-There is no need to build, or test it really. Just add the code into a compiler and run it. (Do not forget to change difficulty by changing delNumber)
+There is no need to build, or test it really. Just add the code into a compiler, read the comments and run it. (Do not forget to change difficulty by changing delNumber)
